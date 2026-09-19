@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Edit Project</title>
+
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='css/style.css') }}"
+    >
+</head>
+
+<body>
+
+<main>
+
+    <h1>Edit Project</h1>
+
+    <form
+        method="POST"
+        action="{{ url_for('update_project', project_id=project.id) }}"
+    >
+
+        <label>
+            Title
+            <input
+                type="text"
+                name="title"
+                value="{{ project.title }}"
+                required
+            >
+        </label>
+
+        <label>
+            Year
+            <input
+                type="number"
+                name="year"
+                value="{{ project.year or '' }}"
+            >
+        </label>
+
+        <label>
+            Venue
+            <input
+                type="text"
+                name="venue"
+                value="{{ project.venue or '' }}"
+            >
+        </label>
+
+        <label>
+            Summary
+            <textarea name="summary">{{ project.summary or '' }}</textarea>
+        </label>
+
+        <label>
+            GitHub URL
+            <input
+                type="url"
+                name="github_url"
+                value="{{ project.github_url or '' }}"
+            >
+        </label>
+
+        <label>
+            Paper URL
+            <input
+                type="url"
+                name="paper_url"
+                value="{{ project.paper_url or '' }}"
+            >
+        </label>
+
+        <label>
+            Project URL
+            <input
+                type="url"
+                name="project_url"
+                value="{{ project.project_url or '' }}"
+            >
+        </label>
+
+        <label>
+            Video URL
+            <input
+                type="url"
+                name="video_url"
+                value="{{ project.video_url or '' }}"
+            >
+        </label>
+
+        <button type="submit">
+            Save Changes
+        </button>
+
+    </form>
+
+</main>
+
+</body>
+
+</html>

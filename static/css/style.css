@@ -1,45 +1,785 @@
-body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    line-height: 1.6;
-    color: #222;
+/* =========================================================
+   THEME VARIABLES
+   ========================================================= */
+
+:root {
+    --bg: #ffffff;
+    --text: #202124;
+    --muted: #666666;
+    --light-muted: #888888;
+
+    --link: #1772b4;
+    --link-hover: #0f4f7d;
+
+    --line: #e5e5e5;
+    --thumb-bg: #f5f5f5;
+
+    --input-bg: #ffffff;
+    --input-text: #202124;
+    --input-border: #cccccc;
+
+    --button-bg: #ffffff;
+    --button-text: #444444;
+    --button-border: #aaaaaa;
+    --button-hover: #f5f5f5;
+
+    --profile-bg: #eeeeee;
+    --profile-text: #777777;
 }
+
+
+/* =========================================================
+   DARK MODE
+   ========================================================= */
+
+html[data-theme="dark"] {
+    --bg: #141619;
+    --text: #eeeeee;
+    --muted: #a0a4a8;
+    --light-muted: #777c82;
+
+    --link: #6baee6;
+    --link-hover: #9acbf2;
+
+    --line: #30343a;
+    --thumb-bg: #1c1f22;
+
+    --input-bg: #1b1e22;
+    --input-text: #eeeeee;
+    --input-border: #41464d;
+
+    --button-bg: #1b1e22;
+    --button-text: #eeeeee;
+    --button-border: #454a50;
+    --button-hover: #24282d;
+
+    --profile-bg: #24272b;
+    --profile-text: #aaaaaa;
+}
+
+
+/* =========================================================
+   BASE
+   ========================================================= */
+
+* {
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    margin: 0;
+
+    background: var(--bg);
+    color: var(--text);
+
+    font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
+
+    font-size: 16px;
+    line-height: 1.55;
+
+    -webkit-font-smoothing: antialiased;
+
+    transition:
+        background-color 0.2s ease,
+        color 0.2s ease;
+}
+
+
+/* =========================================================
+   MAIN PAGE
+   ========================================================= */
 
 main {
-    max-width: 850px;
-    margin: 60px auto;
-    padding: 0 24px;
+    max-width: 880px;
+    margin: 0 auto;
+
+    padding:
+        52px
+        24px
+        64px;
 }
 
-header {
-    margin-bottom: 60px;
+
+/* =========================================================
+   INTRO
+   ========================================================= */
+
+.intro {
+    margin-bottom: 42px;
+}
+
+.intro-layout {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+
+    gap: 36px;
+}
+
+.intro-text {
+    flex: 1;
+    min-width: 0;
+}
+
+
+/* Name + theme button */
+
+.name-row {
+    display: flex;
+    align-items: center;
+
+    gap: 10px;
+}
+
+.name-row h1 {
+    margin: 0;
 }
 
 h1 {
-    margin-bottom: 5px;
+    margin: 0 0 4px;
+
+    color: var(--text);
+
+    font-size: 2rem;
+    font-weight: 500;
+
+    line-height: 1.2;
 }
 
-h2 {
-    margin-top: 50px;
+.subtitle {
+    margin: 4px 0 16px;
+
+    color: var(--muted);
+
+    font-size: 0.95rem;
 }
 
-nav {
-    margin-top: 15px;
+.intro > p:not(.subtitle),
+.intro-text > p:not(.subtitle) {
+    max-width: 690px;
+
+    margin: 10px 0;
+
+    color: var(--text);
+
+    font-size: 0.96rem;
 }
 
-nav a {
-    margin-right: 15px;
+
+/* =========================================================
+   PROFILE PHOTO
+   ========================================================= */
+
+.profile-photo {
+    width: 155px;
+    height: 155px;
+
+    flex-shrink: 0;
+
+    border-radius: 50%;
+
+    background: var(--profile-bg);
+    color: var(--profile-text);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    object-fit: cover;
+
+    font-size: 2rem;
+    font-weight: 500;
+
+    margin-top: 2px;
 }
+
+
+/* =========================================================
+   THEME BUTTON
+   ========================================================= */
+
+.theme-toggle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 30px;
+    height: 30px;
+
+    padding: 0;
+
+    flex-shrink: 0;
+
+    background: transparent;
+    color: var(--text);
+
+    border: 1px solid var(--line);
+    border-radius: 50%;
+
+    font-size: 0.95rem;
+    line-height: 1;
+
+    cursor: pointer;
+
+    transition:
+        background 0.15s ease,
+        border-color 0.15s ease,
+        transform 0.15s ease;
+}
+
+.theme-toggle:hover {
+    background: var(--button-hover);
+    border-color: var(--muted);
+
+    transform: translateY(-1px);
+}
+
+
+/* =========================================================
+   LINKS
+   ========================================================= */
 
 a {
-    color: #3366cc;
+    color: var(--link);
     text-decoration: none;
+
+    transition: color 0.15s ease;
 }
 
 a:hover {
+    color: var(--link-hover);
     text-decoration: underline;
 }
 
-article {
-    margin-bottom: 30px;
+.links {
+    display: flex;
+    flex-wrap: wrap;
+
+    gap: 14px;
+
+    margin-top: 12px;
+}
+
+.links a {
+    font-size: 0.9rem;
+}
+
+
+/* =========================================================
+   SECTIONS
+   ========================================================= */
+
+section {
+    margin-top: 42px;
+}
+
+h2 {
+    margin:
+        0
+        0
+        18px;
+
+    padding-bottom: 4px;
+
+    color: var(--text);
+
+    font-size: 1.15rem;
+    font-weight: 500;
+
+    border-bottom: 1px solid var(--line);
+}
+
+
+/* =========================================================
+   RECENTLY / NEWS
+   ========================================================= */
+
+.update {
+    display: grid;
+
+    grid-template-columns: 92px 1fr;
+
+    gap: 8px;
+
+    margin-bottom: 8px;
+
+    color: var(--text);
+
+    font-size: 0.9rem;
+}
+
+.date {
+    color: var(--muted);
+
+    font-size: 0.86rem;
+}
+
+
+/* =========================================================
+   PROJECT / PUBLICATION ROW
+   ========================================================= */
+
+.project-entry {
+    display: grid;
+
+    grid-template-columns: 165px 1fr;
+
+    gap: 22px;
+
+    align-items: start;
+
+    margin-bottom: 34px;
+}
+
+
+/* =========================================================
+   PROJECT THUMBNAIL
+   ========================================================= */
+
+.project-thumb {
+    width: 165px;
+    height: 108px;
+
+    overflow: hidden;
+}
+
+.project-thumb img,
+.project-thumb video,
+.project-thumb-placeholder {
+    display: block;
+
+    width: 100%;
+    height: 100%;
+
+    object-fit: contain;
+
+    background: var(--thumb-bg);
+
+    border-radius: 3px;
+}
+
+.project-thumb video {
+    pointer-events: none;
+}
+
+
+/* =========================================================
+   PROJECT TEXT
+   ========================================================= */
+
+.project-content {
+    min-width: 0;
+}
+
+.project-content h3 {
+    margin: 0 0 4px;
+
+    color: var(--text);
+
+    font-size: 1.08rem;
+    font-weight: 500;
+
+    line-height: 1.35;
+}
+
+
+/* Authors */
+
+.project-authors {
+    margin: 2px 0 3px;
+
+    color: var(--muted);
+
+    font-size: 0.94rem;
+    line-height: 1.5;
+}
+
+.project-authors a {
+    color: var(--link);
+}
+
+.project-authors a:hover {
+    color: var(--link-hover);
+
+    text-decoration: underline;
+}
+
+
+/* Your own name */
+
+.project-authors .me {
+    color: var(--text);
+
+    font-weight: 500;
+
+    text-decoration: underline;
+    text-underline-offset: 2px;
+}
+
+
+/* Venue */
+
+.project-venue {
+    margin: 2px 0 7px;
+
+    color: var(--muted);
+
+    font-size: 0.94rem;
+}
+
+
+/* Summary — safe to leave even if currently unused */
+
+.project-summary {
+    margin: 6px 0;
+
+    color: var(--muted);
+
+    font-size: 0.88rem;
+    line-height: 1.5;
+}
+
+
+/* =========================================================
+   PROJECT LINKS
+   ========================================================= */
+
+.project-links {
+    display: flex;
+    flex-wrap: wrap;
+
+    gap: 12px;
+
+    margin-top: 5px;
+}
+
+.project-links a {
+    color: var(--link);
+
+    font-size: 0.82rem;
+    font-weight: 500;
+
+    text-transform: uppercase;
+}
+
+.project-links a:hover {
+    color: var(--link-hover);
+
+    text-decoration: underline;
+}
+
+
+/* =========================================================
+   EXPERIENCE / EDUCATION
+   ========================================================= */
+
+.experience {
+    display: flex;
+
+    justify-content: space-between;
+    align-items: flex-start;
+
+    gap: 24px;
+
+    margin-bottom: 14px;
+}
+
+.experience strong {
+    color: var(--text);
+
+    font-size: 0.94rem;
+    font-weight: 500;
+}
+
+.experience p {
+    margin:
+        2px
+        0
+        0;
+
+    color: var(--muted);
+
+    font-size: 0.87rem;
+}
+
+.experience > span {
+    flex-shrink: 0;
+
+    color: var(--muted);
+
+    font-size: 0.84rem;
+}
+
+
+/* =========================================================
+   FOOTER
+   ========================================================= */
+
+footer {
+    margin-top: 55px;
+
+    padding-top: 12px;
+
+    color: var(--light-muted);
+
+    font-size: 0.78rem;
+
+    border-top: 1px solid var(--line);
+}
+
+
+/* =========================================================
+   ADMIN FORMS
+   ========================================================= */
+
+.admin-form {
+    display: flex;
+    flex-direction: column;
+
+    gap: 14px;
+
+    max-width: 580px;
+}
+
+.admin-form label {
+    display: flex;
+    flex-direction: column;
+
+    gap: 4px;
+
+    color: var(--text);
+
+    font-size: 0.86rem;
+}
+
+.admin-form input,
+.admin-form textarea,
+.admin-form select {
+    width: 100%;
+
+    padding: 7px 8px;
+
+    background: var(--input-bg);
+    color: var(--input-text);
+
+    font: inherit;
+
+    border: 1px solid var(--input-border);
+    border-radius: 2px;
+
+    outline: none;
+
+    transition:
+        border-color 0.15s ease,
+        background-color 0.15s ease;
+}
+
+.admin-form input:focus,
+.admin-form textarea:focus,
+.admin-form select:focus {
+    border-color: var(--link);
+}
+
+.admin-form textarea {
+    min-height: 110px;
+
+    resize: vertical;
+}
+
+
+/* =========================================================
+   BUTTONS
+   ========================================================= */
+
+button {
+    width: fit-content;
+
+    padding: 6px 12px;
+
+    background: var(--button-bg);
+    color: var(--button-text);
+
+    font: inherit;
+    font-size: 0.82rem;
+
+    border: 1px solid var(--button-border);
+    border-radius: 2px;
+
+    cursor: pointer;
+
+    transition:
+        background-color 0.15s ease,
+        border-color 0.15s ease;
+}
+
+button:hover {
+    background: var(--button-hover);
+}
+
+
+/* Theme button overrides generic button style */
+
+button.theme-toggle {
+    width: 30px;
+    height: 30px;
+
+    padding: 0;
+
+    background: transparent;
+    color: var(--text);
+
+    border-color: var(--line);
+
+    border-radius: 50%;
+}
+
+button.theme-toggle:hover {
+    background: var(--button-hover);
+    border-color: var(--muted);
+}
+
+
+/* =========================================================
+   ADMIN PROJECT LIST
+   ========================================================= */
+
+.admin-project {
+    display: flex;
+
+    justify-content: space-between;
+    align-items: center;
+
+    gap: 20px;
+
+    padding: 10px 0;
+
+    color: var(--text);
+
+    border-bottom: 1px solid var(--line);
+}
+
+.admin-actions {
+    display: flex;
+    align-items: center;
+
+    gap: 10px;
+}
+
+.admin-actions form {
+    margin: 0;
+}
+
+
+/* =========================================================
+   TEXT SELECTION
+   ========================================================= */
+
+::selection {
+    background: rgba(23, 114, 180, 0.22);
+}
+
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width: 650px) {
+
+    main {
+        padding:
+            32px
+            18px
+            45px;
+    }
+
+
+    /* Intro */
+
+    .intro-layout {
+        flex-direction: column-reverse;
+
+        gap: 20px;
+    }
+
+    h1 {
+        font-size: 1.7rem;
+    }
+
+    .profile-photo {
+        width: 110px;
+        height: 110px;
+    }
+
+    .name-row {
+        gap: 8px;
+    }
+
+    .theme-toggle,
+    button.theme-toggle {
+        width: 28px;
+        height: 28px;
+
+        font-size: 0.9rem;
+    }
+
+
+    /* Projects */
+
+    .project-entry {
+        grid-template-columns: 1fr;
+
+        gap: 10px;
+
+        margin-bottom: 32px;
+    }
+
+    .project-thumb {
+        width: 180px;
+        height: 118px;
+    }
+
+    .project-thumb img,
+    .project-thumb video,
+    .project-thumb-placeholder {
+        width: 100%;
+        height: 100%;
+    }
+
+
+    /* Recently */
+
+    .update {
+        grid-template-columns: 75px 1fr;
+    }
+
+
+    /* Experience */
+
+    .experience {
+        display: block;
+    }
+
+    .experience > span {
+        display: block;
+
+        margin-top: 3px;
+    }
+
+
+    /* Admin */
+
+    .admin-project {
+        display: block;
+    }
+
+    .admin-actions {
+        margin-top: 8px;
+    }
 }

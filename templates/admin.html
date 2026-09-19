@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Admin | Duc Anh Nguyen</title>
+
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='css/style.css') }}"
+    >
+</head>
+
+<body>
+
+<main>
+
+    <h1>Admin</h1>
+
+    <section>
+        <h2>Add Project</h2>
+
+        <form method="POST" action="{{ url_for('create_project') }}">
+
+            <label>
+                Title
+                <input
+                    type="text"
+                    name="title"
+                    required
+                >
+            </label>
+
+            <label>
+                Year
+                <input
+                    type="number"
+                    name="year"
+                >
+            </label>
+
+            <label>
+                Venue
+                <input
+                    type="text"
+                    name="venue"
+                >
+            </label>
+
+            <label>
+                Summary
+                <textarea name="summary"></textarea>
+            </label>
+
+            <label>
+                GitHub URL
+                <input
+                    type="url"
+                    name="github_url"
+                >
+            </label>
+
+            <label>
+                Paper URL
+                <input
+                    type="url"
+                    name="paper_url"
+                >
+            </label>
+
+            <label>
+                Project URL
+                <input
+                    type="url"
+                    name="project_url"
+                >
+            </label>
+
+            <label>
+                Video URL
+                <input
+                    type="url"
+                    name="video_url"
+                >
+            </label>
+
+            <button type="submit">
+                Add Project
+            </button>
+
+        </form>
+    </section>
+
+
+    <section>
+        <h2>Existing Projects</h2>
+
+        {% for project in projects %}
+
+            <div class="admin-project">
+
+                <div>
+                    <strong>{{ project.title }}</strong>
+
+                    {% if project.year %}
+                        — {{ project.year }}
+                    {% endif %}
+                </div>
+                    <a href="{{ url_for('edit_project', project_id=project.id) }}">
+                        Edit
+                    </a>
+
+                <form
+                    method="POST"
+                    action="{{ url_for('delete_project', project_id=project.id) }}"
+                >
+                    <button type="submit">
+                        Delete
+                    </button>
+                </form>
+
+            </div>
+
+        {% endfor %}
+
+    </section>
+    <form
+    method="POST"
+    action="{{ url_for('logout') }}"
+>
+    <button type="submit">
+        Logout
+    </button>
+</form>
+</main>
+
+</body>
+
+</html>
