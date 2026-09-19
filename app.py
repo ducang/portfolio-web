@@ -142,7 +142,6 @@ def create_project():
                     title,
                     year,
                     venue,
-                    
                     github_url,
                     paper_url,
                     project_url,
@@ -150,13 +149,12 @@ def create_project():
                 )
                 VALUES (
                     %s, %s, %s, %s,
-                    %s, %s, %s, %s
+                    %s, %s, %s
                 );
             """, (
                 data["title"],
                 year,
                 data.get("venue") or None,
-                data.get("summary") or None,
                 data.get("github_url") or None,
                 data.get("paper_url") or None,
                 data.get("project_url") or None,
@@ -221,7 +219,6 @@ def update_project(project_id):
                     title = %s,
                     year = %s,
                     venue = %s,
-                    summary = %s,
                     github_url = %s,
                     paper_url = %s,
                     project_url = %s,
@@ -231,7 +228,6 @@ def update_project(project_id):
                 data["title"],
                 data.get("year") or None,
                 data.get("venue") or None,
-                data.get("summary") or None,
                 data.get("github_url") or None,
                 data.get("paper_url") or None,
                 data.get("project_url") or None,
