@@ -3,6 +3,8 @@
 
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>Edit Project</title>
 
     <link
@@ -18,9 +20,16 @@
     <h1>Edit Project</h1>
 
     <form
+        class="admin-form"
         method="POST"
         action="{{ url_for('update_project', project_id=project.id) }}"
     >
+
+        <input
+            type="hidden"
+            name="csrf_token"
+            value="{{ csrf_token() }}"
+        >
 
         <label>
             Title

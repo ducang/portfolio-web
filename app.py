@@ -13,11 +13,23 @@ from flask import (
 from functools import wraps
 from werkzeug.security import check_password_hash
 from psycopg.rows import dict_row
+from flask_wtf.csrf import CSRFProtect
 
 load_dotenv()
 
 app = Flask(__name__)
 app.secret_key = os.environ["SECRET_KEY"]
+is_production = os.environ.get("ENVIRONMENT") == "production"
+
+app.config.update(
+    SESSION_COOKIE_HTTPONLY=True,
+    SESSION_COOKIE_SAMESITE="Lax",
+    SESSION_COOKIE_SECURE=is_production
+)
+
+csrf = CSRFProtect(app)
+
+
 def get_db():
     return psycopg.connect(
         os.environ["DATABASE_URL"],

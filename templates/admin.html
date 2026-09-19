@@ -22,7 +22,16 @@
     <section>
         <h2>Add Project</h2>
 
-        <form method="POST" action="{{ url_for('create_project') }}">
+        <form
+            class="admin-form"
+            method="POST"
+            action="{{ url_for('create_project') }}"
+        >
+            <input
+                type="hidden"
+                name="csrf_token"
+                value="{{ csrf_token() }}"
+            >
 
             <label>
                 Title
@@ -48,7 +57,6 @@
                     name="venue"
                 >
             </label>
-
 
             <label>
                 GitHub URL
@@ -104,32 +112,52 @@
                         — {{ project.year }}
                     {% endif %}
                 </div>
+
+                <div class="admin-actions">
+
                     <a href="{{ url_for('edit_project', project_id=project.id) }}">
                         Edit
                     </a>
 
-                <form
-                    method="POST"
-                    action="{{ url_for('delete_project', project_id=project.id) }}"
-                >
-                    <button type="submit">
-                        Delete
-                    </button>
-                </form>
+                    <form
+                        method="POST"
+                        action="{{ url_for('delete_project', project_id=project.id) }}"
+                    >
+                        <input
+                            type="hidden"
+                            name="csrf_token"
+                            value="{{ csrf_token() }}"
+                        >
+
+                        <button type="submit">
+                            Delete
+                        </button>
+                    </form>
+
+                </div>
 
             </div>
 
         {% endfor %}
 
     </section>
+
+
     <form
-    method="POST"
-    action="{{ url_for('logout') }}"
->
-    <button type="submit">
-        Logout
-    </button>
-</form>
+        method="POST"
+        action="{{ url_for('logout') }}"
+    >
+        <input
+            type="hidden"
+            name="csrf_token"
+            value="{{ csrf_token() }}"
+        >
+
+        <button type="submit">
+            Logout
+        </button>
+    </form>
+
 </main>
 
 </body>
